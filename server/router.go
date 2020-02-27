@@ -19,8 +19,14 @@ func NewRouter() *gin.Engine {
 		//检查用户是否注册
 		v1.POST("/login/check_is_registered", api.UserIsReg)
 
+		//获取公司模板
+		v1.POST("/login/getcorpname", api.GetCorp)
+
 		//保存每日上传信息
 		v1.POST("/report/save", api.SaveInfo)
+
+		//获取每日上传信息
+		v1.POST("/report/getlastdata", api.GetInfo)
 	}
 
 	return router

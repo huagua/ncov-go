@@ -37,3 +37,25 @@ func SaveInfo(c *gin.Context) {
 		c.JSON(200, ErrorResponse(err))
 	}
 }
+
+// GetInfo 用户上传信息接口
+func GetInfo(c *gin.Context) {
+	var service service.GetInfoService
+	if err := c.ShouldBind(&service); err == nil {
+		res := service.GetLastData(c)
+		c.JSON(200, res)
+	} else {
+		c.JSON(200, ErrorResponse(err))
+	}
+}
+
+// GetCorp 用户上传信息接口
+func GetCorp(c *gin.Context) {
+	var service service.GetCorpService
+	if err := c.ShouldBind(&service); err == nil {
+		res := service.GetCorp(c)
+		c.JSON(200, res)
+	} else {
+		c.JSON(200, ErrorResponse(err))
+	}
+}
