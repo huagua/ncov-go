@@ -10,32 +10,40 @@ func NewRouter() *gin.Engine {
 	//日志与恢复中间件
 	router := gin.Default()
 
-	// 路由
-	v1 := router.Group("/api")
+	// 路由 用户登录信息接口
+	v1 := router.Group("/login")
 	{
 		//获取uid和token
-		v1.POST("/login/getcode", api.UserLogin)
+		v1.POST("/getcode", api.UserLogin)
 
 		//检查用户是否注册
-		v1.POST("/login/check_is_registered", api.UserIsReg)
+		v1.POST("/check_is_registered", api.UserIsReg)
 
 		//检查用户是否存在
-		v1.POST("/login/check_user", api.CheckUser)
+		v1.POST("/check_user", api.CheckUser)
 
 		//微信用户注册
-		v1.POST("/login/register", api.WeixinUsrRegister)
-
-		//微信用户注册
-		v1.POST("/info/getmyinfo", api.GetUserInfo)
+		v1.POST("/register", api.WeixinUsrRegister)
 
 		//获取公司模板
-		v1.POST("/login/getcorpname", api.GetCorp)
+		v1.POST("/getcorpname", api.GetCorp)
+	}
 
+	// 路由，用户上传信息接口
+	v2 := router.Group("/report")
+	{
 		//保存每日上传信息
-		v1.POST("/report/save", api.SaveInfo)
+		v2.POST("/save", api.SaveInfo)
 
-		//获取每日上传信息
-		v1.POST("/report/getlastdata", api.GetInfo)
+		//获取上次上传信息
+		v2.POST("/getlastdata", api.GetInfo)
+	}
+
+	// 路由， 获取用户基本信息
+	v3 := router.Group("/info")
+	{
+		//获取用户信息
+		v3.POST("/getmyinfo", api.GetUserInfo)
 	}
 
 	return router
