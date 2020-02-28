@@ -59,7 +59,7 @@ func BuildCorp(corp model.Corp) Corp {
 }
 
 // BuildStatus 序列化status
-func BuildStatus(info model.UserInfo) Status {
+func BuildStatus(info model.Code) Status {
 	return Status{
 		Uid:   info.Uid,
 		Token: info.Token,
@@ -67,7 +67,7 @@ func BuildStatus(info model.UserInfo) Status {
 }
 
 // BuildstatusResponse 序列化status响应
-func BuildStatusResponse(info model.UserInfo) Response {
+func BuildStatusResponse(info model.Code) Response {
 	return Response{
 		Data: BuildStatus(info),
 	}

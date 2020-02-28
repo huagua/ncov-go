@@ -12,16 +12,6 @@ type User struct {
 	Password string
 }
 
-//记录用户token信息
-type UserInfo struct {
-	gorm.Model
-	Uid    string
-	Token  string
-	Corpid string
-	Code   string
-	UserId string
-}
-
 type WeiXinUser struct {
 	gorm.Model
 	Name     string

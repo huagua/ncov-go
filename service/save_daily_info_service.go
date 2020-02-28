@@ -30,6 +30,11 @@ type SaveDailyInfoService struct {
 
 // isRegistered 判断用户是否存在
 func (service *SaveDailyInfoService) SaveDailyInfo(c *gin.Context) serializer.Response {
+
+	if !model.CheckToken(service.Uid, service.Token) {
+		return serializer.ParamErr("token验证错误", nil)
+	}
+
 	dailyInfo := model.DailyInfo{
 		IsReturnSchool:            service.IsReturnSchool,
 		CurrentHealthValue:        service.CurrentHealthValue,
@@ -45,20 +50,14 @@ func (service *SaveDailyInfoService) SaveDailyInfo(c *gin.Context) serializer.Re
 		ReturnDormNum:             service.ReturnDormNum,
 		ReturnTime:                service.ReturnTime,
 		ReturnTrafficInfo:         service.ReturnTrafficInfo,
-		Uid: 					   service.Uid,
-		SaveDate:				   time.Now().Format("2006-01-02"),
+		Uid:                       service.Uid,
+		SaveDate:                  time.Now().Format("2006-01-02"),
 	}
 
 	//判断该用户这天是否已经提交过
 	count := 0
-	if model.DB.Model(&model.DailyInfo{}).Where("uid = ? and save_date = ?", service.Uid, time.Now().Format("2006-01-02")).Count(&count); count > 0{
+	if model.DB.Model(&model.DailyInfo{}).Where("uid = ? and save_date = ?", service.Uid, time.Now().Format("2006-01-02")).Count(&count); count > 0 {
 		return serializer.ParamErr("今日您已提交，请勿重复提交", nil)
-	}
-
-	//判断token是否正确
-	var info model.UserInfo
-	if err := model.DB.Where(&model.UserInfo{Uid: service.Uid, Token: service.Token}).First(&info).Error; err != nil {
-		return serializer.ParamErr("token错误", nil)
 	}
 
 	// 记录用户当日信息

@@ -27,16 +27,23 @@ func (service *UserOpenIdService) GetCode(c *gin.Context) serializer.Response {
 		return serializer.ParamErr("小程序报错", err)
 	}
 
-	info := model.UserInfo{
+	info := model.Code{
 		Uid:    res.OpenID,
 		Token:  res.SessionKey,
 		Corpid: "100000001",
 		Code:   service.Code,
 	}
 
-	// 记录用户token信息
-	if err := model.DB.Create(&info).Error; err != nil {
-		return serializer.ParamErr("记录失败", err)
+	//查看数据库中是否已有token信息
+	count := 0
+	if model.DB.Model(&model.Code{}).Where("uid = ? and token = ?", res.OpenID, res.SessionKey).Count(&count); count == 0 {
+		//将之前的数据删除
+		model.DB.Where("uid = ?", res.OpenID).Delete(model.Code{})
+
+		// 记录用户本次token信息
+		if err := model.DB.Create(&info).Error; err != nil {
+			return serializer.ParamErr("token记录失败", err)
+		}
 	}
 
 	return serializer.BuildStatusResponse(info)
