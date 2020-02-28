@@ -16,12 +16,12 @@ type CheckIsRegisteredService struct {
 
 // isRegistered 判断用户是否注册过
 func (service *CheckIsRegisteredService) IsRegistered(c *gin.Context) serializer.Response {
-	var info model.UserInfo
 
+	count := 0
 	//在搜索数据库，判断是否存在该用户
-	if err := model.DB.Where(&model.UserInfo{Code: service.Code, Corpid: service.Corpid, Uid: service.Uid, Token: service.Token}).First(&info).Error; err != nil {
-		return serializer.ParamErr("token错误", nil)
+	if model.DB.Model(&model.UserInfo{}).Where("uid = ? and token = ?", service.Uid, service.Token).Count(&count); count == 0 {
+		return serializer.BuildIsRegisteredResponse(0)
 	}
 
-	return serializer.BuildIsRegisteredResponse()
+	return serializer.BuildIsRegisteredResponse(1)
 }

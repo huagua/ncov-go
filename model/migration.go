@@ -7,4 +7,5 @@ func migration() {
 	DB.AutoMigrate(&UserInfo{})
 	DB.AutoMigrate(&DailyInfo{})
 	DB.AutoMigrate(&Corp{})
+	DB.AutoMigrate(&WeiXinUser{})
 }

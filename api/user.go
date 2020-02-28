@@ -49,11 +49,44 @@ func GetInfo(c *gin.Context) {
 	}
 }
 
+// GetInfo 用户上传信息接口
+func GetUserInfo(c *gin.Context) {
+	var service service.GetInfoService
+	if err := c.ShouldBind(&service); err == nil {
+		res := service.GetMyInfo(c)
+		c.JSON(200, res)
+	} else {
+		c.JSON(200, ErrorResponse(err))
+	}
+}
+
 // GetCorp 用户上传信息接口
 func GetCorp(c *gin.Context) {
 	var service service.GetCorpService
 	if err := c.ShouldBind(&service); err == nil {
 		res := service.GetCorp(c)
+		c.JSON(200, res)
+	} else {
+		c.JSON(200, ErrorResponse(err))
+	}
+}
+
+// CheckUser 检查用户是否存在
+func CheckUser(c *gin.Context) {
+	var service service.CheckUserService
+	if err := c.ShouldBind(&service); err == nil {
+		res := service.CheckUser(c)
+		c.JSON(200, res)
+	} else {
+		c.JSON(200, ErrorResponse(err))
+	}
+}
+
+// CheckUser 检查用户是否存在
+func WeixinUsrRegister(c *gin.Context) {
+	var service service.WeixinUserRegister
+	if err := c.ShouldBind(&service); err == nil {
+		res := service.UserRegister(c)
 		c.JSON(200, res)
 	} else {
 		c.JSON(200, ErrorResponse(err))

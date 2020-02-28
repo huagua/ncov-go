@@ -4,12 +4,11 @@
     <list default="true" id="1f26be26-449b-4cc8-9911-b009e35610d3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/conf.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/conf.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/migration.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/migration.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serializer/info.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/info.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serializer/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/check_is_registered.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/check_is_registered.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,15 +31,18 @@
     <option name="indexEntireGoPath" value="false" />
   </component>
   <component name="ProjectId" id="1YKabUHrzFp1M8NSTvVqgsykGRN" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="GO_FMT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="configurable.Global.GOPATH.is.expanded" value="true" />
     <property name="configurable.Module.GOPATH.is.expanded" value="false" />
     <property name="configurable.Project.GOPATH.is.expanded" value="true" />
     <property name="go.import.settings.migrated" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="go.sdk" />
   </component>
@@ -79,11 +81,17 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="实现两个接口，getcorpname和getlastdata" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现两个接口，getcorpname和getlastdata" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

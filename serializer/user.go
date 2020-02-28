@@ -2,23 +2,59 @@ package serializer
 
 import "ncov_go/model"
 
-// User 用户序列化器
+// Usertoken 用户token器
 type Status struct {
 	Uid   string `json:"uid"`
 	Token string `json:"token"`
 }
 
-// Corp 用户序列化器
+// User 用户序列化器
+type WeixinUser struct {
+	Uid      string `json:"uid"`
+	Name     string `json:"name"`
+	PhoneNum string `json:"phone_num"`
+	UserId   string `json:"userid"`
+}
+
+// Corp 表单模板序列化器
 type Corp struct {
-	Corpid       string `json:"corpid"`
-	TemplateCode string `json:"template_code"`
+	Corpname     string `json:"corpname"`
+	TypeCorpname string `json:"type_corpname"`
+	TypeUsername string `json:"type_username"`
+}
+
+// isRegistered 用户序列化器
+type IsRegistered struct {
+	IsRegistered int `json:"is_registered"`
+}
+
+type CheckUser struct {
+	IsExist int `json:"is_exist"`
+}
+
+//// BuildCorp 序列化status
+//func BuildUserCheck(corp model.Corp) CheckUser {
+//	return CheckUser{
+//		IsExist:1,
+//	}
+//}
+
+// BuildCorp 序列化status
+func BuildUserInfo(user model.WeiXinUser) WeixinUser {
+	return WeixinUser{
+		Uid:      user.Uid,
+		Name:     user.Name,
+		PhoneNum: user.PhoneNum,
+		UserId:   user.UserId,
+	}
 }
 
 // BuildCorp 序列化status
 func BuildCorp(corp model.Corp) Corp {
 	return Corp{
-		Corpid:       corp.Corpid,
-		TemplateCode: corp.TemplateCode,
+		Corpname:     corp.Corpid,
+		TypeCorpname: corp.TemplateCode,
+		TypeUsername: corp.TemplateCode,
 	}
 }
 
@@ -45,8 +81,22 @@ func BuildCorpResponse(corp model.Corp) Response {
 }
 
 // BuildstatusResponse 序列化status响应
-func BuildIsRegisteredResponse() Response {
+func BuildIsRegisteredResponse(x int) Response {
 	return Response{
-		Data: true,
+		Data: IsRegistered{IsRegistered: x},
+	}
+}
+
+// BuildstatusResponse 序列化status响应
+func BuildUserCheckResponse(x int) Response {
+	return Response{
+		Data: CheckUser{IsExist: x},
+	}
+}
+
+// BuildstatusResponse 序列化status响应
+func BuildUserInfoResponse(user model.WeiXinUser) Response {
+	return Response{
+		Data: BuildUserInfo(user),
 	}
 }

@@ -19,6 +19,15 @@ func NewRouter() *gin.Engine {
 		//检查用户是否注册
 		v1.POST("/login/check_is_registered", api.UserIsReg)
 
+		//检查用户是否存在
+		v1.POST("/login/check_user", api.CheckUser)
+
+		//微信用户注册
+		v1.POST("/login/register", api.WeixinUsrRegister)
+
+		//微信用户注册
+		v1.POST("/info/getmyinfo", api.GetUserInfo)
+
 		//获取公司模板
 		v1.POST("/login/getcorpname", api.GetCorp)
 

@@ -19,6 +19,16 @@ type UserInfo struct {
 	Token  string
 	Corpid string
 	Code   string
+	UserId string
+}
+
+type WeiXinUser struct {
+	gorm.Model
+	Name     string
+	PhoneNum string
+	Uid      string
+	UserId   string
+	Corpname string
 }
 
 //记录不同机构的不同模板号
