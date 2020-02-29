@@ -10,10 +10,13 @@ type Status struct {
 
 // student 用户序列化器
 type Student struct {
-	Uid      string `json:"uid"`
-	Name     string `json:"name"`
-	PhoneNum string `json:"phone_num"`
-	UserId   string `json:"userid"`
+	Uid          string `json:"uid"`
+	Name         string `json:"name"`
+	PhoneNum     string `json:"phone_num"`
+	UserId       string `json:"userid"`
+	Corpname     string `json:"corpname"`
+	TypeCorpname string `json:"type_corpname"`
+	TypeUsername string `json:"type_username"`
 }
 
 // Corp 表单模板序列化器
@@ -47,10 +50,13 @@ func BuildUserCheck(x int, corpid string, userid string) CheckUser {
 // BuildUserInfo 序列化
 func BuildUserInfo(user model.Student) Student {
 	return Student{
-		Uid:      user.Uid,
-		Name:     user.Name,
-		PhoneNum: user.PhoneNum,
-		UserId:   user.UserId,
+		Uid:          user.Uid,
+		Name:         user.Name,
+		PhoneNum:     user.PhoneNum,
+		UserId:       user.UserId,
+		Corpname:     user.Corpid,
+		TypeCorpname: "组织编号",
+		TypeUsername: "学号",
 	}
 }
 
