@@ -92,3 +92,25 @@ func WeixinUsrRegister(c *gin.Context) {
 		c.JSON(200, ErrorResponse(err))
 	}
 }
+
+// UserBind 检查用户是否存在
+func UserBind(c *gin.Context) {
+	var service service.UserBindService
+	if err := c.ShouldBind(&service); err == nil {
+		res := service.Bind(c)
+		c.JSON(200, res)
+	} else {
+		c.JSON(200, ErrorResponse(err))
+	}
+}
+
+// CheckUser 检查用户是否存在
+func UserUnBind(c *gin.Context) {
+	var service service.UserBindService
+	if err := c.ShouldBind(&service); err == nil {
+		res := service.UnBind(c)
+		c.JSON(200, res)
+	} else {
+		c.JSON(200, ErrorResponse(err))
+	}
+}

@@ -2,14 +2,14 @@ package serializer
 
 import "ncov_go/model"
 
-// Usertoken 用户token器
+// Usertoken 用户token
 type Status struct {
 	Uid   string `json:"uid"`
 	Token string `json:"token"`
 }
 
-// User 用户序列化器
-type WeixinUser struct {
+// student 用户序列化器
+type Student struct {
 	Uid      string `json:"uid"`
 	Name     string `json:"name"`
 	PhoneNum string `json:"phone_num"`
@@ -21,6 +21,7 @@ type Corp struct {
 	Corpname     string `json:"corpname"`
 	TypeCorpname string `json:"type_corpname"`
 	TypeUsername string `json:"type_username"`
+	TemplateCode string `json:"template_code"`
 }
 
 // isRegistered 用户序列化器
@@ -29,19 +30,23 @@ type IsRegistered struct {
 }
 
 type CheckUser struct {
-	IsExist int `json:"is_exist"`
+	IsExist int    `json:"is_exist"`
+	UserId  string `json:"userid"`
+	Corpid  string `json:"corpid"`
 }
 
-//// BuildCorp 序列化status
-//func BuildUserCheck(corp model.Corp) CheckUser {
-//	return CheckUser{
-//		IsExist:1,
-//	}
-//}
+// BuildUserInfo 序列化
+func BuildUserCheck(x int, corpid string, userid string) CheckUser {
+	return CheckUser{
+		IsExist: x,
+		Corpid:  corpid,
+		UserId:  userid,
+	}
+}
 
-// BuildCorp 序列化status
-func BuildUserInfo(user model.WeiXinUser) WeixinUser {
-	return WeixinUser{
+// BuildUserInfo 序列化
+func BuildUserInfo(user model.Student) Student {
+	return Student{
 		Uid:      user.Uid,
 		Name:     user.Name,
 		PhoneNum: user.PhoneNum,
@@ -53,8 +58,9 @@ func BuildUserInfo(user model.WeiXinUser) WeixinUser {
 func BuildCorp(corp model.Corp) Corp {
 	return Corp{
 		Corpname:     corp.Corpid,
-		TypeCorpname: corp.TemplateCode,
-		TypeUsername: corp.TemplateCode,
+		TypeCorpname: "组织编号",
+		TypeUsername: "学号",
+		TemplateCode: "default",
 	}
 }
 
@@ -80,22 +86,22 @@ func BuildCorpResponse(corp model.Corp) Response {
 	}
 }
 
-// BuildstatusResponse 序列化status响应
+// BuildIsRegisteredResponse 序列化用户注册响应
 func BuildIsRegisteredResponse(x int) Response {
 	return Response{
 		Data: IsRegistered{IsRegistered: x},
 	}
 }
 
-// BuildstatusResponse 序列化status响应
-func BuildUserCheckResponse(x int) Response {
+// BuildUserCheckResponse 序列化验证用户是否响应
+func BuildUserCheckResponse(x int, corpid string, userid string) Response {
 	return Response{
-		Data: CheckUser{IsExist: x},
+		Data: BuildUserCheck(x, corpid, userid),
 	}
 }
 
-// BuildstatusResponse 序列化status响应
-func BuildUserInfoResponse(user model.WeiXinUser) Response {
+// BuildUserInfoResponse 序列化用户信息响应
+func BuildUserInfoResponse(user model.Student) Response {
 	return Response{
 		Data: BuildUserInfo(user),
 	}

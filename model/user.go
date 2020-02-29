@@ -12,13 +12,15 @@ type User struct {
 	Password string
 }
 
-type WeiXinUser struct {
+type Student struct {
 	gorm.Model
-	Name     string
-	PhoneNum string
-	Uid      string
-	UserId   string
-	Corpname string
+	Name         string
+	PhoneNum     string
+	Uid          string
+	UserId       string
+	Corpid       string
+	IsRegistered int
+	Password     string
 }
 
 //记录不同机构的不同模板号
@@ -26,6 +28,9 @@ type Corp struct {
 	gorm.Model
 	Corpid       string
 	TemplateCode string
+	Corpname     string
+	TypeCorpname string
+	TypeUsername string
 }
 
 const (

@@ -18,6 +18,6 @@ type DailyInfo struct {
 	ReturnTime                string
 	ReturnDormNum             string
 	ReturnTrafficInfo         string
-	Uid 					  string
-	SaveDate				  string
+	Uid                       string
+	SaveDate                  string
 }

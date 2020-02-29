@@ -21,5 +21,14 @@ func (service *CheckIsRegisteredService) IsRegistered(c *gin.Context) serializer
 		return serializer.ParamErr("token验证错误", nil)
 	}
 
-	return serializer.BuildIsRegisteredResponse(1)
+	//到student表中找是否存在
+	//在搜索数据库，判断是否存在该用户
+	count := 0
+	if model.DB.Model(&model.Student{}).Where(&model.Student{Uid: service.Uid}).Count(&count); count == 0 {
+		return serializer.BuildIsRegisteredResponse(0)
+	} else {
+		var student model.Student
+		model.DB.Where("uid = ?", service.Uid).First(&student)
+		return serializer.BuildIsRegisteredResponse(student.IsRegistered)
+	}
 }

@@ -28,10 +28,9 @@ func (service *UserOpenIdService) GetCode(c *gin.Context) serializer.Response {
 	}
 
 	info := model.Code{
-		Uid:    res.OpenID,
-		Token:  res.SessionKey,
-		Corpid: "100000001",
-		Code:   service.Code,
+		Uid:   res.OpenID,
+		Token: res.SessionKey,
+		Code:  service.Code,
 	}
 
 	//查看数据库中是否已有token信息

@@ -3,11 +3,14 @@
   <component name="ChangeListManager">
     <list default="true" id="1f26be26-449b-4cc8-9911-b009e35610d3" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/info.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/report.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/migration.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/migration.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serializer/info.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/report.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/serializer/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/check_is_registered.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/check_is_registered.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/save_daily_info_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/save_daily_info_service.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/user_openid_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user_openid_service.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -93,7 +96,8 @@
     <MESSAGE value="实现两个接口，getcorpname和getlastdata" />
     <MESSAGE value="实现接口微信用户注册、用户信息获取、判断是否存在该用户" />
     <MESSAGE value="路由api优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="路由api优化" />
+    <MESSAGE value="优化token验证代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="优化token验证代码" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
